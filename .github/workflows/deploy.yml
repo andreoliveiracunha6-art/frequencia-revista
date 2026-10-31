@@ -1,3 +1,4 @@
+
 name: Deploy to GitHub Pages
 on:
   push:
@@ -19,11 +20,8 @@ jobs:
         with:
           node-version: 22
       - run: npm install
-- name: Build site
-        run: |
-          echo "URL configurada: $([ -n "$VITE_SUPABASE_URL" ] && echo SIM || echo NAO)"
-          echo "KEY configurada: $([ -n "$VITE_SUPABASE_PUBLISHABLE_KEY" ] && echo SIM || echo NAO)"
-          npm run build
+      - name: Build site
+        run: npm run build
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.VITE_SUPABASE_PUBLISHABLE_KEY }}
